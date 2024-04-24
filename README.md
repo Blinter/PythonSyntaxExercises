@@ -3,52 +3,62 @@
 
 ### count_up.py
 ```python
-def convert_temp(unit_in, unit_out, temp):
-    """Convert farenheit <-> celsius and return results.
+def count_up(start, stop):
+    """Print all numbers from start up to and including stop.
 
-    - unit_in: either "f" or "c" 
-    - unit_out: either "f" or "c"
-    - temp: temperature (in f or c, depending on unit_in)
-
-    Return results of conversion, if any.
-
-    If unit_in or unit_out are invalid, return "Invalid unit [UNIT_IN]".
     For example:
 
-      convert_temp("c", "f", 0)  =>  32.0
-      convert_temp("f", "c", 212) => 100.0
+        count_up(5, 7)
+
+   should print:
+
+        5
+        6
+        7
     """
-    return (f"Invalid unit {unit_in}" if unit_in not in ('c', 'f') 
-            else f"Invalid unit {unit_out}" if unit_out not in ('c', 'f')
-            else temp if unit_in == unit_out 
-            else temp * (9/5) + 32 if unit_in == 'c' 
-            else (temp - 32) * (5/9))
-
+    print(*range(start, stop + 1))
     """    
-    if unit_in != "f" and unit_in != "c":
-        return f"Invalid unit {unit_in}"
-    elif unit_out != "f" and unit_out != "c":
-        return f"Invalid unit {unit_out}"
-    elif unit_in == unit_out:
-        return temp
-    elif unit_in == "c":
-        return temp * 1.8 + 32
+    print(start, end=" ") if start <= stop else print()
+    count_up(start + 1, stop) if start < stop else None
+
+    (print(start, end=" ") if start <= stop else print()) \
+    or count_up(start + 1, stop) if start <= stop else None
+
+    (print(start, end=" ") if start <= stop else print()) or count_up(start + 1, stop) if start <= stop else None
+
+    print(" ".join(map(lambda x: str(x), range(start, stop + 1))))
+
+    print(" ".join(str(i) for i in range(start, stop + 1)))
+
+    while start <= stop:
+        print(start, end=" ")
+        start += 1
+    print()  # Print a newline after the loop
+
+    if start <= stop:
+        print(start, end=" ")
+        count_up(start + 1, stop)
     else:
-        return (temp - 32) * 5/9
+        print()  # Print a newline when the recursion ends
 
-    if unit_in not in ['c', 'f'] or unit_out not in ['c', 'f']:
-        return f"Invalid units {unit_in}, {unit_out}"    
-    if unit_in == unit_out:
-        return temp
-    return temp * 1.8 + 32 if unit_in == 'c' else (temp - 32) * 5/9    
-        """
+    numbers = map(str, range(start, stop + 1))
+    print(" ".join(numbers))
 
+    numbers = (str(i) for i in range(start, stop + 1))
+    print(" ".join(numbers))
+    
+    numbers = [str(i) for i in range(start, stop + 1)]
+    print(" ".join(numbers))
 
-print("c", "f", 0, convert_temp("c", "f", 0), "should be 32.0")
-print("f", "c", 212, convert_temp("f", "c", 212), "should be 100.0")
-print("z", "f", 32, convert_temp("z", "f", 32), "should be Invalid unit z")
-print("c", "z", 32, convert_temp("c", "z", 32), "should be Invalid unit z")
-print("f", "f", 75.5, convert_temp("f", "f", 75.5), "should be 75.5")
+    numbers = map(str, range(start, stop + 1))
+    print(" ".join(numbers))
+
+    for num in range(start, stop + 1):
+        print(num);
+
+    """
+
+count_up(5, 7)        
 ```
 ---
 ### in_range.py
@@ -150,57 +160,45 @@ def sum_nums(nums):
 
     return sum(num for num in nums)
     return sum([num for num in nums])
+
+
+
     """
 
 
 print("sum_nums returned", sum_nums([1, 2, 3, 4]))
+
 ```
 ---
 
 ### any7.py
 ```python
-def sum_nums(nums):
-    """Given list of numbers, return sum of those numbers.
-
-    For example:
-      sum_nums([1, 2, 3, 4])
-
-    Should return (not print):
-      10
-    """  
-
-    # Python has a built-in function `sum()` for this, but we don't
-    # want you to use it. Please write this by hand.
+def any7(nums):
+    """Are any of these numbers a 7? (True/False)"""
+    # YOUR CODE HERE 
+    return 7 in nums
+    """
+    return bool(list(filter(lambda num: num == 7, nums)))
     
-    return_int = 0
+
+    return nums.count(7) > 0
+
+    return any(num == 7 for num in nums)
+    
+    i = 0
+    while i < len(nums):
+        if nums[i] == 7:
+            return True
+        i += 1
+    return False
+
     for num in nums:
-        return_int+=num
-    return return_int
+        if num == 7:
+            return True
+    return False
     """
-    if len(nums) == 0:
-        return 0
-    return nums[0] + sum_nums(nums[1:])
-    
-    index = 0
-    sum = 0
-    while(index != len(nums)):
-        sum += nums[index]
-        index += 1
-    return sum
-
-
-    return sum(nums)
-
-    return sum(num for num in nums)
-    return sum([num for num in nums])
-
-
-
-    """
-
-
-print("sum_nums returned", sum_nums([1, 2, 3, 4]))
-
+print("should be true", any7([1, 2, 7, 4, 5]))
+print("should be false", any7([1, 2, 4, 5]))
 ```
 ---
 ### convert.py
