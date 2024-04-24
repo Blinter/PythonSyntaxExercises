@@ -16,7 +16,9 @@ def count_up(start, stop):
         6
         7
     """
+
     print(*range(start, stop + 1))
+
     """    
     print(start, end=" ") if start <= stop else print()
     count_up(start + 1, stop) if start < stop else None
@@ -80,9 +82,11 @@ def in_range(nums, lowest, highest):
       20 fits
       30 fits
     """
+
     for num in nums:
         if lowest <= num <= highest:
             print(num)
+
     """
     if nums:
         num = nums.pop(0)
@@ -135,7 +139,6 @@ def sum_nums(nums):
     Should return (not print):
       10
     """  
-
     # Python has a built-in function `sum()` for this, but we don't
     # want you to use it. Please write this by hand.
     
@@ -143,6 +146,7 @@ def sum_nums(nums):
     for num in nums:
         return_int+=num
     return return_int
+
     """
     if len(nums) == 0:
         return 0
@@ -178,8 +182,7 @@ def any7(nums):
     # YOUR CODE HERE 
     return 7 in nums
     """
-    return bool(list(filter(lambda num: num == 7, nums)))
-    
+    return bool(list(filter(lambda num: num == 7, nums))) 
 
     return nums.count(7) > 0
 
@@ -218,6 +221,7 @@ def convert_temp(unit_in, unit_out, temp):
       convert_temp("c", "f", 0)  =>  32.0
       convert_temp("f", "c", 212) => 100.0
     """
+
     return (f"Invalid unit {unit_in}" if unit_in not in ('c', 'f') 
             else f"Invalid unit {unit_out}" if unit_out not in ('c', 'f')
             else temp if unit_in == unit_out 
@@ -256,10 +260,12 @@ print("f", "f", 75.5, convert_temp("f", "f", 75.5), "should be 75.5")
 ```python
 def print_upper_words(words, must_start_with={}):
     """Prints all words in the list in all uppercase."""
+
     for word in words:
         if len(must_start_with) == 0 \
         or any(word.upper().startswith(startwith.upper()) for startwith in must_start_with):
             print(word.upper())
+            
 """
 print_upper_words(["hello", "hey", "goodbye", "yo", "yes"],
                    must_start_with={"h", "y"})
